@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: todos-cloud-gateway
+  cloud:
+    gateway:
+      routes:
+      - id: todos_all_api
+        uri: http://localhost:8080
+        predicates:
+        - Path=/todos/**
+        filters:
+        - SetResponseHeader=X-TODOS-CLOUD-GATEWAY-ROUTE-ID, todos_all_api
+        - RewritePath=/todos/(?<path>.*), /$\{path}
+      - id: todos_ui_root
+        uri: http://localhost:4040
+        predicates:
+        - Path=/**
+server:
+  port: 9999
+management:
+  endpoints:
+    web:
+      base-path: /ops
+      exposure:
+        include: '*'
+
