@@ -5,7 +5,7 @@
 
 	<groupId>io.corbs</groupId>
 	<artifactId>todos-cloud-gateway</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0.SNAP</version>
 	<packaging>jar</packaging>
 
 	<name>todos-cloud-gateway</name>
@@ -88,10 +88,17 @@
 		<sourceDirectory>${project.basedir}/src/main/kotlin</sourceDirectory>
 		<testSourceDirectory>${project.basedir}/src/test/kotlin</testSourceDirectory>
 		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>build-info</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
 			<plugin>
 				<artifactId>kotlin-maven-plugin</artifactId>
 				<groupId>org.jetbrains.kotlin</groupId>

@@ -1,9 +1,14 @@
+todos:
+  query:
+    endpoint: http://localhost:8005
+  command:
+    endpoint: http://localhost:8001
 spring:
   cloud:
     gateway:
       routes:
       - id: todos_query_api
-        uri: http://localhost:8080
+        uri: ${todos.query.endpoint}
         predicates:
         - Method=GET
         - Path=/todos/**
@@ -11,7 +16,7 @@ spring:
         - SetResponseHeader=X-TODOS-CLOUD-GATEWAY-ROUTE-ID, todos_query_api
         - RewritePath=/todos/(?<path>.*), /$\{path}
       - id: todos_create_api
-        uri: http://localhost:8080
+        uri: ${todos.command.endpoint}
         predicates:
         - Method=POST
         - Path=/todos/**
@@ -19,7 +24,7 @@ spring:
         - SetResponseHeader=X-TODOS-CLOUD-GATEWAY-REQUEST-ID, todos_create_api
         - RewritePath=/todos/(?<path>.*), /$\{path}
       - id: todos_update_api
-        uri: http://localhost:8080
+        uri: ${todos.command.endpoint}
         predicates:
         - Method=PATCH
         - Path=/todos/**
@@ -27,7 +32,7 @@ spring:
         - SetResponseHeader=X-TODOS-CLOUD-GATEWAY-REQUEST-ID, todos_update_api
         - RewritePath=/todos/(?<path>.*), /$\{path}
       - id: todos_delete_api
-        uri: http://localhost:8080
+        uri: ${todos.command.endpoint}
         predicates:
         - Method=DELETE
         - Path=/todos/**
@@ -35,6 +40,6 @@ spring:
         - SetResponseHeader=X-TODOS-CLOUD-GATEWAY-REQUEST-ID, todos_delete_api
         - RewritePath=/todos/(?<path>.*), /$\{path}
       - id: todos_ui_root
-        uri: http://localhost:4040
+        uri: ${todos.ui.endpoint}
         predicates:
         - Path=/**

@@ -1,0 +1,15 @@
+app:
+  name: todos-cloud-gateway
+  artifact: target/todos-cloud-gateway-1.0.0.SNAP.jar
+  memory: 1G
+  route: todos-cloud-gateway.cfapps.io
+env-key-1: TODOS_API_ENDPOINT
+env-val-1: https://todos-api.cfapps.io
+env-key-2: TODOS_UI_ENDPOINT
+env-val-2: https://todos-ui.cfapps.io
+env-key-3: CONFIG_SERVER_URI
+env-val-3: https://config-srv.cfapps.io
+env-key-4: TODOS_QUERY_ENDPOINT
+env-val-4: https://todos-query.cfapps.io
+env-key-5: TODOS_COMMAND_ENDPOINT
+env-val-5: https://todos-command.cfapps.io
